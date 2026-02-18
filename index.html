@@ -1,236 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Universe | Happy Birthday</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Universe | Happy Birthday</title>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;600&display=swap');
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;600&display=swap');
 
-        :root {
-            --bg-dark: #0a0a0a;
-            --heart-red: #ff3860;
-            --gold: #d4af37;
-            --soft-pink: #ffdeeb;
-        }
+:root {
+    --bg-dark:#0a0a0a;
+    --heart-red:#ff3860;
+    --gold:#d4af37;
+    --soft-pink:#ffdeeb;
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        body {
-            background-color: var(--bg-dark);
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
+body{
+    background:var(--bg-dark);
+    color:white;
+    font-family:'Montserrat',sans-serif;
+    overflow-x:hidden;
+}
 
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
-        }
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    text-align:center;
+    background:radial-gradient(circle at center,#1b2735 0%,#090a0f 100%);
+}
 
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
+.stars{
+    position:absolute;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
 
-        .title-main {
-            font-family: 'Dancing Script', cursive;
-            font-size: 5rem;
-            color: var(--soft-pink);
-            text-shadow: 0 0 20px rgba(255,222,235,0.5);
-            z-index: 1;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 2s forwards 1s;
-        }
+.title-main{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(2.5rem,8vw,5rem);
+    color:var(--soft-pink);
+    text-shadow:0 0 20px rgba(255,222,235,0.5);
+    z-index:1;
+    opacity:0;
+    transform:translateY(30px);
+    animation:fadeIn 2s forwards 1s;
+}
 
-        .reasons-section {
-            padding: 100px 10%;
-            background: white;
-            color: #333;
-        }
+.hero p{
+    z-index:1;
+    margin-top:20px;
+    letter-spacing:3px;
+    font-size:clamp(0.8rem,3vw,1rem);
+}
 
-        .reasons-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
+/* REASONS */
+.reasons-section{
+    padding:60px 5%;
+    background:white;
+    color:#333;
+}
 
-        .reason-card {
-            padding: 20px;
-            border-left: 5px solid var(--heart-red);
-            background: #f9f9f9;
-            transition: 0.3s;
-            font-style: italic;
-        }
+.reasons-section h2{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:clamp(1.6rem,5vw,2.5rem);
+}
 
-        .reason-card:hover {
-            transform: scale(1.05);
-            background: var(--soft-pink);
-        }
+.reasons-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
 
-        .gallery {
-            height: 100vh;
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            background: #111;
-        }
+.reason-card{
+    padding:18px;
+    border-left:5px solid var(--heart-red);
+    background:#f9f9f9;
+    transition:0.3s;
+    font-style:italic;
+    font-size:0.95rem;
+}
 
-        .photo-slide {
-            min-width: 100vw;
-            height: 100%;
-            scroll-snap-align: start;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+.reason-card:hover{
+    transform:scale(1.03);
+    background:var(--soft-pink);
+}
 
-        .photo-placeholder {
-            width: 60%;
-            height: 70%;
-            background: #222;
-            border: 10px solid white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            overflow: hidden;
-        }
+/* GALLERY */
+.gallery{
+    height:90vh;
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    background:#111;
+}
 
-        .photo-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.photo-slide{
+    min-width:100vw;
+    height:100%;
+    scroll-snap-align:start;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
 
-        @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
+.photo-placeholder{
+    width:90%;
+    max-width:420px;
+    height:65vh;
+    background:#222;
+    border:6px solid white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    overflow:hidden;
+    border-radius:14px;
+}
 
-        .floating-heart {
-            position: fixed;
-            color: var(--heart-red);
-            pointer-events: none;
-            z-index: 999;
-            animation: floatUp 4s linear forwards;
-        }
+.photo-placeholder img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
 
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0); opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-        }
+/* HEART */
+.floating-heart{
+    position:fixed;
+    color:var(--heart-red);
+    pointer-events:none;
+    z-index:999;
+    animation:floatUp 4s linear forwards;
+    font-size:20px;
+}
 
-        footer {
-            height: 40vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: var(--bg-dark);
-            font-size: 2rem;
-            color: var(--gold);
-        }
-    </style>
+/* FOOTER */
+footer{
+    height:30vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:var(--bg-dark);
+    font-size:clamp(1.4rem,5vw,2rem);
+    color:var(--gold);
+    text-align:center;
+    padding:20px;
+}
+
+@keyframes fadeIn{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(100vh) scale(0);opacity:1;}
+    100%{transform:translateY(-10vh) scale(1.5);opacity:0;}
+}
+</style>
 </head>
 
 <body>
 
 <section class="hero">
-    <div class="stars" id="starField"></div>
-    <h1 class="title-main">Happy Birthday, Jagruti</h1>
-    <p style="z-index:1; margin-top:20px; letter-spacing: 5px;">SCROLL TO EXPLORE</p>
+<div class="stars" id="starField"></div>
+<h1 class="title-main">Happy Birthday, Jagruti</h1>
+<p>SCROLL TO EXPLORE</p>
 </section>
 
 <section class="reasons-section">
-    <h2 style="text-align: center; margin-bottom: 50px; font-size: 2.5rem;">
-        100 Reasons You Are Amazing
-    </h2>
-    <div class="reasons-container" id="reasonsGrid"></div>
+<h2>100 Reasons You Are Amazing</h2>
+<div class="reasons-container" id="reasonsGrid"></div>
 </section>
 
-<!-- ✅ GALLERY WITH YOUR IMAGES -->
 <section class="gallery">
 
-    <div class="photo-slide">
-        <div class="photo-placeholder">
-            <img src="https://img.sanishtech.com/u/51aa72cfb6143da36dc262ea266c2116.png">
-        </div>
-    </div>
+<div class="photo-slide">
+<div class="photo-placeholder">
+<img src="https://img.sanishtech.com/u/51aa72cfb6143da36dc262ea266c2116.png">
+</div>
+</div>
 
-    <div class="photo-slide">
-        <div class="photo-placeholder">
-            <img src="https://img.sanishtech.com/u/301cfc21cd055bff97f820d16e3ea449.png">
-        </div>
-    </div>
+<div class="photo-slide">
+<div class="photo-placeholder">
+<img src="https://img.sanishtech.com/u/301cfc21cd055bff97f820d16e3ea449.png">
+</div>
+</div>
 
-    <div class="photo-slide">
-        <div class="photo-placeholder">
-            <img src="https://img.sanishtech.com/u/981efdcda8481c4e745ca5b3ea832449.jpeg">
-        </div>
+<div class="photo-slide">
+<div class="photo-placeholder">
+<img src="https://img.sanishtech.com/u/981efdcda8481c4e745ca5b3ea832449.jpeg">
+</div>
+</div>
+<!-- Photo 4 -->
+<div class="photo-slide">
+    <div class="photo-placeholder">
+        <img src="https://img.sanishtech.com/u/1933194032ae96d720ccc570ea587468.jpg">
     </div>
+</div>
+
+<!-- Photo 5 -->
+<div class="photo-slide">
+    <div class="photo-placeholder">
+        <img src="https://img.sanishtech.com/u/7348539a61ccc151bb1e5d2701e08f02.jpg">
+    </div>
+</div>
+
+<!-- Photo 6 -->
+<div class="photo-slide">
+    <div class="photo-placeholder">
+        <img src="sugaiugciaus">
+    </div>
+</div>
+
+<!-- Photo 7 -->
+<div class="photo-slide">
+    <div class="photo-placeholder">
+        <img src="PASTE_IMAGE_LINK_7">
+    </div>
+</div>
+
+<!-- Photo 8 -->
+<div class="photo-slide">
+    <div class="photo-placeholder">
+        <img src="PASTE_IMAGE_LINK_8">
+    </div>
+</div>
+
 
 </section>
 
 <footer>
-    Happy Birthday ❤️
+Happy Birthday ❤️
 </footer>
 
 <script>
-    const starField = document.getElementById('starField');
+const starField=document.getElementById('starField');
 
-    for (let i = 0; i < 200; i++) {
-        const star = document.createElement('div');
-        star.style.position = 'absolute';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.width = '2px';
-        star.style.height = '2px';
-        star.style.backgroundColor = 'white';
-        star.style.opacity = Math.random();
-        starField.appendChild(star);
-    }
+for(let i=0;i<150;i++){
+const star=document.createElement('div');
+star.style.position='absolute';
+star.style.left=Math.random()*100+'%';
+star.style.top=Math.random()*100+'%';
+star.style.width='2px';
+star.style.height='2px';
+star.style.backgroundColor='white';
+star.style.opacity=Math.random();
+starField.appendChild(star);
+}
 
-    const reasonsGrid = document.getElementById('reasonsGrid');
+const reasonsGrid=document.getElementById('reasonsGrid');
 
-    const phrases = [
-        "Your smile brightens the room.",
-        "You support people around you.",
-        "Your confidence is inspiring.",
-        "You work hard for your goals.",
-        "You make people happy.",
-        "Your energy is positive.",
-        "You never give up easily.",
-        "You are unique.",
-        "You help others.",
-        "You are strong."
-    ];
+const phrases=[
+"Your smile brightens the room.",
+"You support people around you.",
+"Your confidence is inspiring.",
+"You work hard for your goals.",
+"You make people happy.",
+"Your energy is positive.",
+"You never give up easily.",
+"You are unique.",
+"You help others.",
+"You are strong."
+];
 
-    for (let i = 1; i <= 100; i++) {
-        const card = document.createElement('div');
-        card.className = 'reason-card';
-        const text = phrases[i % phrases.length];
-        card.innerHTML = `<strong>#${i}</strong><br>${text}`;
-        reasonsGrid.appendChild(card);
-    }
+for(let i=1;i<=100;i++){
+const card=document.createElement('div');
+card.className='reason-card';
+const text=phrases[i%phrases.length];
+card.innerHTML=`<strong>#${i}</strong><br>${text}`;
+reasonsGrid.appendChild(card);
+}
 
-    window.addEventListener('scroll', () => {
-        if (Math.random() > 0.9) {
-            const heart = document.createElement('div');
-            heart.innerHTML = '❤';
-            heart.className = 'floating-heart';
-            heart.style.left = Math.random() * 100 + 'vw';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 4000);
-        }
-    });
+window.addEventListener('scroll',()=>{
+if(Math.random()>0.92){
+const heart=document.createElement('div');
+heart.innerHTML='❤';
+heart.className='floating-heart';
+heart.style.left=Math.random()*100+'vw';
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),4000);
+}
+});
 </script>
 
 </body>
